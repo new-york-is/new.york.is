@@ -23,15 +23,6 @@
 <body>
 
   <div id="container">
-    <header>
-    new.york.is awesome
-    </header>
-    <div id="main" role="main">
-
-    </div>
-    <footer>
-
-    </footer>
   </div> <!--! end of #container -->
 
 
@@ -42,10 +33,14 @@
   <!-- scripts concatenated and minified via ant build script-->
   <script src="js/libs/underscore-min.js"></script>
   <script src="js/libs/backbone-min.js"></script>
+  <script src="js/libs/jquery.stream-1.2.min.js"></script>
   <script src="js/libs/jquery.animate-enhanced.min.js"></script>
   <script defer src="js/script.js"></script>
   <!-- end scripts-->
 
+    <script type="text/template" id="event-view">
+        <%= name %>
+    </script>
 
   <script> // Change UA-XXXXX-X to be your site's ID
     window._gaq = [['_setAccount','UAXXXXXXXX1'],['_trackPageview'],['_trackPageLoadTime']];
