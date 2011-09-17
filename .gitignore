@@ -1,0 +1,16 @@
+.DS_Store
+.classpath
+.project
+.target/
+.scala_dependencies
+.settings/
+*.swp
+lib_managed/
+project/boot/
+bin/
+scalabot/
+target/
+project/plugins/src_managed/
+project/plugins/project/
+\#*\#
+*~
