@@ -87,4 +87,5 @@ Vagrant::Config.run do |config|
     chef.cookbooks_path = "cookbooks"
     chef.add_recipe("nginx") 
   end
+  config.vm.forward_port("web", 80, 4567)
 end
