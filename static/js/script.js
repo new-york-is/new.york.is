@@ -161,7 +161,7 @@ var AppRouter = Backbone.Router.extend({
                 event4 = new Event({name:"friend"});
                 event5 = new Event({name:"world"});
                 event6 = new Event({name:"aspartame"});
-                collection.add(event).add(event2).add(event3).add(event4).add(event5).add(event6)
+               // collection.add(event).add(event2).add(event3).add(event4).add(event5).add(event6)
             }
             view = new RowView({collection:collection});
             $("#container").append(view.render().el);
