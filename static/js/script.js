@@ -55,16 +55,16 @@ var EventView = Backbone.View.extend({
 
             el.children().eq(0).css("transform","scale("+scaleFactor+")");
             if(new Date().getTime() % 2 == 0){
-                startingLeft = $(window).width();
-                finalLeft = -1*dimensions.width*scaleFactor-100;
+                startingLeft = $(window).width()+200;
+                finalLeft = -1*dimensions.width*scaleFactor-200;
             }else{
-                finalLeft = $(window).width();
-                startingLeft  = -1*dimensions.width*scaleFactor-100;
+                startingLeft  = -1*dimensions.width*scaleFactor-200;
+                finalLeft = $(window).width()+200;
             }
             this.startingLeft = startingLeft;
             this.finalLeft = finalLeft;
             el.css("left",startingLeft);
-            el.animate({"left":finalLeft},6000,easing, function(){
+            el.animate({"left":finalLeft},12000,easing, function(){
                    self.model.trigger("animationFinished", self.model);
                 });
 
@@ -72,14 +72,12 @@ var EventView = Backbone.View.extend({
         },
         handleMouseover:function(){
             if($(this.el).is(':animated') ){
-                console.log("mousining");
                 $(this.el).stop();
             }
         },
         handleMouseout:function(){
             var self = this;
             if(!$(this.el).is(':animated')){
-                console.log("mouseouting");
                 $(this.el).animate({"left":this.finalLeft},3000,"linear",function(){
                     self.model.trigger("animationFinished", self.model);
                 });
@@ -89,8 +87,8 @@ var EventView = Backbone.View.extend({
             var newEl = this.el.cloneNode(true);
             newEl.style.visibility="hidden";
             document.body.appendChild(newEl);
-            var width = $(newEl).width();
-            var height = $(newEl).height();
+            var width = $(newEl).children(0).width();
+            var height = $(newEl).children(0).height();
             newEl.parentNode.removeChild(newEl);
             return {width:width,height:height};
         },

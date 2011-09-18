@@ -67,7 +67,9 @@ td { vertical-align: top; }
    ========================================================================== */
 html{overflow:hidden;}
 body {background:url(/img/mari-is-awesome.png) repeat-x 0px 0px;;color:#d1d4d3;overflow:hidden;}
-.event{position:absolute;font-size:101px;display:block;}
+ul{padding:0px;margin:0px;width:10000px;}
+.event{position:absolute;font-size:101px;display:block;width:10000px;}
+.event > div{display:inline-block;}
 
 
 
