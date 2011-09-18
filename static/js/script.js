@@ -12,6 +12,13 @@ var CategoryEvent = Event.extend({
         }
     });
 
+var VenuePushEvent = Event.extend({
+        defaults:{
+            userImage:"https://foursquare.com/img/blank_boy.png",
+            firstName:"Paul"
+        }
+    });
+
 var EventCollection = Backbone.Collection.extend({
         model: Event,
         initialize:function(){
@@ -116,6 +123,15 @@ var CategoryEventView = EventView.extend({
         }
 });
 
+var VenuePushEventView = EventView.extend({
+        animationDuration:12000,
+        animationDurationAfterHover:7000,
+        initialize:function(){
+            EventView.prototype.initialize.apply(this,arguments);
+            this.template = _.template($("#venue-push-event-view").html());
+        }
+});
+
 var RowView = Backbone.View.extend({
         tagName:"ul",
         initialize:function(){
@@ -163,6 +179,9 @@ var RowView = Backbone.View.extend({
 
             if(event instanceof CategoryEvent){
                 viewClass = CategoryEventView; 
+            }else if(event instanceof VenuePushEvent){
+                console.log("venuepush!");
+                viewClass = VenuePushEventView;
             }else{
                 viewClass = EventView; 
             } 

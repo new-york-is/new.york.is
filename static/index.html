@@ -38,6 +38,7 @@
   <script src="js/script.js"></script> 
   <script src="js/venue.js"></script>	
   <script src="js/twitter.js"></script>	
+  <script src="js/push.js"></script>	
   <!-- end scripts-->
     <script type="text/template" id="row-view">
     </script>
@@ -47,6 +48,12 @@
                 <div class="category"><%= category %></div><div class="checkins"><img src="img/marsbot.png"><%= checkins %></div>
                 
             </div>
+        </div>
+    </script>
+    <script type="text/template" id="venue-push-event-view">
+        <div class="venue-push-event-view">
+            <div>New York Is <%= firstName %><img width="110" height="110" src="<%= userImage %>"></div>
+            
         </div>
     </script>
     <script type="text/template" id="event-view">

@@ -73,6 +73,9 @@ ul{padding:0px;margin:0px;width:10000px;}
 .ny-is{font-size:41px;}
 .ny-is span{font-size:15px;vertical-align:baseline;}
 .text-event-view{font-size:50px;color:#d1d4d3;}
+.venue-push-event-view{font-size:50px;color:white;}
+.venue-push-event-view img{vertical-align:middle;margin-left:10px;}
+.venue-push-event-view div{float:left;}
 .by-category,.lower-section{overflow:auto;}
 .by-category img{vertical-align:top;height:80px;margin:0px 10px 0px 0px;}
 .by-category .category{float:left;font-size:100px;}
