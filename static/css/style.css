@@ -71,6 +71,7 @@ ul{padding:0px;margin:0px;width:10000px;}
 .event{position:absolute;display:block;width:10000px;}
 .event > div{display:inline-block;}
 .ny-is{font-size:41px;}
+.ny-is span{font-size:15px;vertical-align:baseline;}
 .text-event-view{font-size:50px;}
 .by-category,.lower-section{overflow:auto;}
 .by-category .category{float:left;font-size:100px;}

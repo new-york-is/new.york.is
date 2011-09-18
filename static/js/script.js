@@ -1,6 +1,7 @@
 var Event = Backbone.Model.extend({ 
         defaults:{
-            name:"Test"
+            name:"Test",
+            highPriority:false
         }
     });
 
@@ -34,6 +35,8 @@ var EventCollection = Backbone.Collection.extend({
 var EventView = Backbone.View.extend({
         tagName:"li",
         className:"event",
+        animationDuration:30000,
+        animationDurationAfterHover:15000,
         events:{
             "mouseover":"handleMouseover",
             "mouseout":"handleMouseout"
@@ -56,11 +59,11 @@ var EventView = Backbone.View.extend({
 
             
             var dimensions = this.getElDimensions();
-            var scaleFactor = height/dimensions.height
+            var scaleFactor = 1;//height/dimensions.height
             var easing = getRandomEasing();
             var startingLeft, finalLeft;
 
-            el.children().eq(0).css("transform","scale("+scaleFactor+")");
+            //el.children().eq(0).css("transform","scale("+scaleFactor+")");
             if(new Date().getTime() % 2 == 0){
                 startingLeft = $(window).width()+200;
                 finalLeft = -1*dimensions.width*scaleFactor-200;
@@ -71,7 +74,7 @@ var EventView = Backbone.View.extend({
             this.startingLeft = startingLeft;
             this.finalLeft = finalLeft;
             el.css("left",startingLeft);
-            el.animate({"left":finalLeft},30000,easing, function(){
+            el.animate({"left":finalLeft},this.animationDuration,easing, function(){
                    self.model.trigger("animationFinished", self.model);
                 });
 
@@ -85,7 +88,7 @@ var EventView = Backbone.View.extend({
         handleMouseout:function(){
             var self = this;
             if(!$(this.el).is(':animated')){
-                $(this.el).animate({"left":this.finalLeft},15000,"linear",function(){
+                $(this.el).animate({"left":this.finalLeft},this.animationDurationAfterHover,"linear",function(){
                     self.model.trigger("animationFinished", self.model);
                 });
             }
@@ -105,6 +108,8 @@ var EventView = Backbone.View.extend({
 });
 
 var CategoryEventView = EventView.extend({
+        animationDuration:12000,
+        animationDurationAfterHover:7000,
         initialize:function(){
             EventView.prototype.initialize.apply(this,arguments);
             this.template = _.template($("#category-event-view").html());
@@ -146,7 +151,13 @@ var RowView = Backbone.View.extend({
                 eventView;
 
             if(slot === false){
-                setTimeout(_.bind(this.renderEvent,this,event),3000);
+                if(event.get("highPriority")){
+                    setTimeout(_.bind(this.renderEvent,this,event),1);
+                }
+                else{
+                    setTimeout(_.bind(this.renderEvent,this,event),10000);
+                
+                }
                 return;
             }
 
