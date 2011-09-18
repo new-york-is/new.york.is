@@ -2,7 +2,7 @@ package com.newyorkis
 
 import com.newyorkis.model.MongoDb
 import com.newyorkis.rest.{RestApiFilter, RestApiRouter}
-import com.newyorkis.service.{AuthenticationService, PingService, PushService}
+import com.newyorkis.service.{AuthenticationService, PingService, PushCheckinService}
 import com.newyorkis.foursquare.{FoursquareVenuePushApi, FoursquareAuthenticationApi}
 
 import com.mongodb.Mongo
@@ -42,7 +42,7 @@ object Server {
     val foursquareAuth = new FoursquareAuthenticationApi(config.foursquare)
     val authService = new AuthenticationService(foursquareAuth, foursquare, db)
     val pingService = new PingService()
-    val pushService = new PushService()
+    val pushService = new PushCheckinService(db)
 
     val service = restFilter andThen RestApiRouter {
       case "auth" :: _ => authService
