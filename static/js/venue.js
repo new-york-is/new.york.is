@@ -4,8 +4,8 @@ var world_trade = '40.7114673282201,-74.01328325271606';
 var union_square = '40.735226248609976, -73.99068832397461';
 
 $(document).ready(function() {
-	setInterval(printCategoryStats, 10000);   
-	
+	printCategoryStats();
+	setInterval(printCategoryStats, 10000);   	
 });
 
 function printCategoryStats(){
@@ -35,7 +35,9 @@ function groupCategories(results){
 	
 	var container = $('#categoryContainer');
 	for(key in categoryArray){
-		container.append('<li>New York is ' + _.keys(categoryArray[key])[0] + ' '+ _.values(categoryArray[key])[0] + ' </li>');
+		var event = new Event({name:_.keys(categoryArray[key])[0] + ' '+ _.values(categoryArray[key])[0]});
+		window.events.add(event);
+		//container.append('<li>New York is ' + _.keys(categoryArray[key])[0] + ' '+ _.values(categoryArray[key])[0] + ' </li>');
 		}	
 
 
