@@ -55,6 +55,7 @@ function groupCategories(results){
 function getVenue(latlong){
     return $.ajax({
             url: 'https://api.foursquare.com/v2/venues/trending?ll='+latlong+'&radius=500&client_id=L2Y45KQZ5ZC1N2QCZI11ZOOZPPXO4SSKK2GLKU2WKX2FXDUI&client_secret=A12OXNUK0RO3HYKDTH51LOI002DDYEGBFNV3I40BEI5IWI4G',
+            crossDomain:true, 
             dataType: 'jsonp'
         });
 }
