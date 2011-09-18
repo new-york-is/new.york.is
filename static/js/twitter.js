@@ -30,7 +30,7 @@
         .success(function(obj){
             var texts = _.pluck(obj.results,"text");    
             _.each(texts, function(text){
-                    if(!alreadyDisplayedTweets[text]){
+                    if(typeof alreadyDisplayedTweets[text] == "undefined"){
                         alreadyDisplayedTweets[text] = true;
                         addTextEvent(text, true);
                     }
