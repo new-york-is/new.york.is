@@ -71,7 +71,7 @@ var EventView = Backbone.View.extend({
             this.startingLeft = startingLeft;
             this.finalLeft = finalLeft;
             el.css("left",startingLeft);
-            el.animate({"left":finalLeft},12000,easing, function(){
+            el.animate({"left":finalLeft},30000,easing, function(){
                    self.model.trigger("animationFinished", self.model);
                 });
 
@@ -85,7 +85,7 @@ var EventView = Backbone.View.extend({
         handleMouseout:function(){
             var self = this;
             if(!$(this.el).is(':animated')){
-                $(this.el).animate({"left":this.finalLeft},7000,"linear",function(){
+                $(this.el).animate({"left":this.finalLeft},15000,"linear",function(){
                     self.model.trigger("animationFinished", self.model);
                 });
             }
