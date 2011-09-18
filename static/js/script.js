@@ -91,15 +91,15 @@ var RowView = Backbone.View.extend({
             }
         },
         renderEvent:function(event){
-            var eventView = new EventView({
-                    model:event
-            }); 
-            
             var slot = this.scheduleToSlot(event);
             if(slot === false){
                 setTimeout(_.bind(this.renderEvent,this,event),3000);
                 return;
             }
+
+            var eventView = new EventView({
+                    model:event
+            }); 
             var height = $(window).height()/5;
             var eventViewEl = eventView.render(height).el
             $(eventViewEl).css("top",height*slot);
