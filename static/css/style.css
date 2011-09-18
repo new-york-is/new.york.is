@@ -74,9 +74,9 @@ ul{padding:0px;margin:0px;width:10000px;}
 .ny-is span{font-size:15px;vertical-align:baseline;}
 .text-event-view{font-size:50px;color:#d1d4d3;}
 .by-category,.lower-section{overflow:auto;}
-.by-category img{float:left;vertical-align:middle;}
+.by-category img{vertical-align:top;height:80px;margin:0px 10px 0px 0px;}
 .by-category .category{float:left;font-size:100px;}
-.by-category .checkins{float:left;font-size:50px;margin-left:20px;text-align:center;padding:5px;background:white;-webkit-border-radius:5px;-moz-border-radius:5px;margin-top:30px;width:70px;font-weight:bold;color:#d1d4d3;}
+.by-category .checkins{float:left;font-size:70px;margin-left:20px;text-align:center;padding:5px 10px;background:white;-webkit-border-radius:5px;-moz-border-radius:5px;font-weight:bold;color:#d1d4d3;margin-top:10px;}
 
 
 
