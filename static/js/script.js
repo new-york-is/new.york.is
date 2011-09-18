@@ -50,31 +50,40 @@ var EventView = Backbone.View.extend({
             
             var dimensions = this.getElDimensions();
             var scaleFactor = height/dimensions.height
+            var easing = getRandomEasing();
+            var startingLeft, finalLeft;
 
             el.children().eq(0).css("transform","scale("+scaleFactor+")");
             if(new Date().getTime() % 2 == 0){
-                el.css("left",$(window).width());
-                this.continueAnimation = function(easing){
-                    el.animate({"left":-1*dimensions.width*scaleFactor-100},6000,easing, function(){
-                       self.model.trigger("animationFinished", self.model);
-                    });
-                }
+                startingLeft = $(window).width();
+                finalLeft = -1*dimensions.width*scaleFactor-100;
             }else{
-                el.css("left",-1*dimensions.width*scaleFactor-100);
-                this.continueAnimation = function(easing){
-                    el.animate({"left":$(window).width()+100},6000,easing, function(){
-                       self.model.trigger("animationFinished", self.model);
-                    });
-                }
+                finalLeft = $(window).width();
+                startingLeft  = -1*dimensions.width*scaleFactor-100;
             }
-            this.continueAnimation(getRandomEasing());
+            this.startingLeft = startingLeft;
+            this.finalLeft = finalLeft;
+            el.css("left",startingLeft);
+            el.animate({"left":finalLeft},6000,easing, function(){
+                   self.model.trigger("animationFinished", self.model);
+                });
+
             return this;
         },
         handleMouseover:function(){
-            $(this.el).stop();
+            if($(this.el).is(':animated') ){
+                console.log("mousining");
+                $(this.el).stop();
+            }
         },
         handleMouseout:function(){
-            this.continueAnimation("easeInElastic"); 
+            var self = this;
+            if(!$(this.el).is(':animated')){
+                console.log("mouseouting");
+                $(this.el).animate({"left":this.finalLeft},3000,"linear",function(){
+                    self.model.trigger("animationFinished", self.model);
+                });
+            }
         },
         getElDimensions:function(){
             var newEl = this.el.cloneNode(true);
