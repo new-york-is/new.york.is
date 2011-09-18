@@ -42,12 +42,12 @@ object Server {
     val foursquareAuth = new FoursquareAuthenticationApi(config.foursquare)
     val authService = new AuthenticationService(foursquareAuth, foursquare, db)
     val pingService = new PingService()
-    val pushService = new PushCheckinService(db)
+    val pushCheckinService = new PushCheckinService(db)
 
     val service = restFilter andThen RestApiRouter {
       case "auth" :: _ => authService
-      case "ping" :: _ => pingService
-      case "push" :: _ => pushService
+      case "ping" :: Nil => pingService
+      case "push" :: Nil => pushCheckinService
     }
 
     val server =
