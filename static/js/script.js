@@ -4,6 +4,13 @@ var Event = Backbone.Model.extend({
         }
     });
 
+var CategoryEvent = Event.extend({
+        defaults:{
+            category:"testCategory",
+            checkins:"1319"
+        }
+    });
+
 var EventCollection = Backbone.Collection.extend({
         model: Event,
         initialize:function(){
@@ -78,7 +85,7 @@ var EventView = Backbone.View.extend({
         handleMouseout:function(){
             var self = this;
             if(!$(this.el).is(':animated')){
-                $(this.el).animate({"left":this.finalLeft},3000,"linear",function(){
+                $(this.el).animate({"left":this.finalLeft},7000,"linear",function(){
                     self.model.trigger("animationFinished", self.model);
                 });
             }
@@ -94,6 +101,13 @@ var EventView = Backbone.View.extend({
         },
         remove:function(){
             this.el.parentNode.removeChild(this.el);
+        }
+});
+
+var CategoryEventView = EventView.extend({
+        initialize:function(){
+            EventView.prototype.initialize.apply(this,arguments);
+            this.template = _.template($("#category-event-view").html());
         }
 });
 
@@ -125,17 +139,29 @@ var RowView = Backbone.View.extend({
             }
         },
         renderEvent:function(event){
-            var slot = this.scheduleToSlot(event);
+            var slot = this.scheduleToSlot(event),
+                viewClass,
+                height,
+                eventViewEl,
+                eventView;
+
             if(slot === false){
                 setTimeout(_.bind(this.renderEvent,this,event),3000);
                 return;
             }
 
-            var eventView = new EventView({
+            if(event instanceof CategoryEvent){
+                viewClass = CategoryEventView; 
+            }else{
+                viewClass = EventView; 
+            } 
+
+            eventView = new viewClass({
                     model:event
             }); 
-            var height = $(window).height()/5;
-            var eventViewEl = eventView.render(height).el
+
+            height = $(window).height()/5;
+            eventViewEl = eventView.render(height).el
             $(eventViewEl).css("top",height*slot);
 
             $(this.el).append(eventViewEl);

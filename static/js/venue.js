@@ -35,7 +35,9 @@ function groupCategories(results){
 
     var container = $('#categoryContainer');
     for(key in categoryArray){
-        var event = new Event({name:"New York is "+_.keys(categoryArray[key])[0] + ' '+ _.values(categoryArray[key])[0]});
+        var categoryName =_.keys(categoryArray[key])[0];
+        var checkinsForCategory = _.values(categoryArray[key])[0];
+        var event = new CategoryEvent({category:categoryName, checkins:checkinsForCategory});
         window.events.add(event);
         //container.append('<li>New York is ' + _.keys(categoryArray[key])[0] + ' '+ _.values(categoryArray[key])[0] + ' </li>');
     }	
