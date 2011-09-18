@@ -44,7 +44,7 @@ class JsonApiClient(host: String, port: Int = 80) {
 
   def headers = Map(
     HttpHeaders.Names.ACCEPT -> "*/*",
-    HttpHeaders.Names.USER_AGENT -> "choosenear.me-api/1.0",
+    HttpHeaders.Names.USER_AGENT -> "new.york.is-api/1.0",
     HttpHeaders.Names.HOST -> host)
 
   def call(method: HttpMethod, uri: String, body: Option[String] = None, extraHeaders: Map[String, String] = Map()): Future[JValue] = {
