@@ -54,27 +54,27 @@ var EventView = Backbone.View.extend({
             el.children().eq(0).css("transform","scale("+scaleFactor+")");
             if(new Date().getTime() % 2 == 0){
                 el.css("left",$(window).width());
-                this.continue = function(easing){
+                this.continueAnimation = function(easing){
                     el.animate({"left":-1*dimensions.width*scaleFactor-100},6000,easing, function(){
                        self.model.trigger("animationFinished", self.model);
                     });
                 }
             }else{
                 el.css("left",-1*dimensions.width*scaleFactor-100);
-                this.continue = function(easing){
+                this.continueAnimation = function(easing){
                     el.animate({"left":$(window).width()+100},6000,easing, function(){
                        self.model.trigger("animationFinished", self.model);
                     });
                 }
             }
-            this.continue(getRandomEasing());
+            this.continueAnimation(getRandomEasing());
             return this;
         },
         handleMouseover:function(){
             $(this.el).stop();
         },
         handleMouseout:function(){
-            this.continue("easeInElastic"); 
+            this.continueAnimation("easeInElastic"); 
         },
         getElDimensions:function(){
             var newEl = this.el.cloneNode(true);
@@ -96,12 +96,10 @@ var RowView = Backbone.View.extend({
             _.bindAll(this,"render","renderEvent",
                         "removedEvent","getNextAvailableSlot",
                         "scheduleToSlot");
-            this.template = _.template($("#row-view").html());
             this.collection.bind("add",this.renderEvent);
             this.takenSlots = [false,false,false,false,false];
         },
         render:function(){
-            $(this.el).html(this.template()); 
             this.collection.each(this.renderEvent); 
             return this;
         },
