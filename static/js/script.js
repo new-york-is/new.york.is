@@ -35,20 +35,30 @@ var EventView = Backbone.View.extend({
         },
         render:function(height){
             var el = $(this.el),
-                self = this;
+                self = this,
+                getRandomEasing = function(){
+                    var easings = ["linear","easeOut","easeIn"];
+                    var random = Math.floor(Math.random()*easings.length);
+                    return easings[random];
+                };
             el.html(this.template(this.model.toJSON()));
 
-            el.css("left",$(window).width());
             
             var dimensions = this.getElDimensions();
             var scaleFactor = height/dimensions.height
 
             el.children().eq(0).css("transform","scale("+scaleFactor+")");
-
-            el.animate({"left":-1*dimensions.width*scaleFactor-100},6000,"linear", function(){
-               self.model.trigger("animationFinished", self.model);
-            });
-
+            if(new Date().getTime() % 2 == 0){
+                el.css("left",$(window).width());
+                el.animate({"left":-1*dimensions.width*scaleFactor-100},6000,getRandomEasing(), function(){
+                   self.model.trigger("animationFinished", self.model);
+                });
+            }else{
+                el.css("left",-1*dimensions.width*scaleFactor-100);
+                el.animate({"left":$(window).width()+100},6000,getRandomEasing(), function(){
+                   self.model.trigger("animationFinished", self.model);
+                });
+            }
             return this;
         },
         getElDimensions:function(){
@@ -121,14 +131,16 @@ var AppRouter = Backbone.Router.extend({
             "*actions": "defaultRoute" 
         },
         defaultRoute: function( actions ){
-            event = new Event({name:"hello"});
-            event2 = new Event({name:"echo"});
-            event3 = new Event({name:"and"});
-            event4 = new Event({name:"friend"});
-            event5 = new Event({name:"world"});
-            event6 = new Event({name:"aspartame"});
             window.events = window.collection = new EventCollection();
-            collection.add(event).add(event2).add(event3).add(event4).add(event5).add(event6)
+            for(var i =0;i<20;i++){
+                event = new Event({name:"hello"});
+                event2 = new Event({name:"echo"});
+                event3 = new Event({name:"and"});
+                event4 = new Event({name:"friend"});
+                event5 = new Event({name:"world"});
+                event6 = new Event({name:"aspartame"});
+                collection.add(event).add(event2).add(event3).add(event4).add(event5).add(event6)
+            }
             view = new RowView({collection:collection});
             $("#container").append(view.render().el);
         }
