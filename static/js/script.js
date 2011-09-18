@@ -27,6 +27,10 @@ var EventCollection = Backbone.Collection.extend({
 var EventView = Backbone.View.extend({
         tagName:"li",
         className:"event",
+        events:{
+            "mouseover":"handleMouseover",
+            "mouseout":"handleMouseout"
+        },
         initialize:function(){
             _.bindAll(this,"render","remove");
             this.model.bind("change",this.render);
@@ -50,16 +54,27 @@ var EventView = Backbone.View.extend({
             el.children().eq(0).css("transform","scale("+scaleFactor+")");
             if(new Date().getTime() % 2 == 0){
                 el.css("left",$(window).width());
-                el.animate({"left":-1*dimensions.width*scaleFactor-100},6000,getRandomEasing(), function(){
-                   self.model.trigger("animationFinished", self.model);
-                });
+                this.continue = function(easing){
+                    el.animate({"left":-1*dimensions.width*scaleFactor-100},6000,easing, function(){
+                       self.model.trigger("animationFinished", self.model);
+                    });
+                }
             }else{
                 el.css("left",-1*dimensions.width*scaleFactor-100);
-                el.animate({"left":$(window).width()+100},6000,getRandomEasing(), function(){
-                   self.model.trigger("animationFinished", self.model);
-                });
+                this.continue = function(easing){
+                    el.animate({"left":$(window).width()+100},6000,easing, function(){
+                       self.model.trigger("animationFinished", self.model);
+                    });
+                }
             }
+            this.continue(getRandomEasing());
             return this;
+        },
+        handleMouseover:function(){
+            $(this.el).stop();
+        },
+        handleMouseout:function(){
+            this.continue("easeInElastic"); 
         },
         getElDimensions:function(){
             var newEl = this.el.cloneNode(true);
