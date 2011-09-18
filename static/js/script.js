@@ -10,7 +10,11 @@ var EventCollection = Backbone.Collection.extend({
             _.bindAll(this,"removeEvent");
         },
         add:function(event){
-            Backbone.Collection.prototype.add.call(this, event);
+            var random = Math.floor(Math.random()*6000);
+            var self = this;
+            setTimeout(function(){
+                        Backbone.Collection.prototype.add.call(self, event);
+                },random);
             event.bind("animationFinished", this.removeEvent);
             return this;
         },
@@ -41,7 +45,7 @@ var EventView = Backbone.View.extend({
 
             el.children().eq(0).css("transform","scale("+scaleFactor+")");
 
-            el.animate({"left":-1*dimensions.width*scaleFactor-100},1000,"linear", function(){
+            el.animate({"left":-1*dimensions.width*scaleFactor-100},6000,"linear", function(){
                self.model.trigger("animationFinished", self.model);
             });
 
