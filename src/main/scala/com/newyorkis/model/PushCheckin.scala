@@ -1,6 +1,7 @@
 package com.newyorkis
 package model
 
+import com.newyorkis.service.PushCheckinPost
 import com.newyorkis.util.{CategoryUtil, MongoPoint}
 import com.newyorkis.foursquare.CheckinDetail
 
