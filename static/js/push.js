@@ -47,6 +47,20 @@
                 window.events.add(getNewVenuePush())
             },10000);
 
+    //  var alreadyDisplayed = [];
+    //  setInterval(function(){
+    //        $.getJSON("/api/push?secret=O1XQSYRINI3Y3P30",function(data){
+    //                if(!_.contains(alreadyDisplayed, data.id){
+    //                    alreadyDisplayed.push(data.id);
+    //                    var event = new VenuePushEvent({
+    //                            highPriority:true,
+    //                            firstName:data.firstName,
+    //                            userImage:data.userImage
+    //                        });
+    //                    window.events.add(event);
+    //                }
+    //            }); 
+    //      },1000);
 })(window.jQuery,window);
 
 
