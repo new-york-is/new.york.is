@@ -13,10 +13,30 @@
                    "highPriority":true
                },
                {
-                   "firstName":"John Paul",
+                   "firstName":"John",
                    "userImage":"https://playfoursquare.s3.amazonaws.com/userpix/FPJJCUBBOEEFQWFQ.jpg",
                    "highPriority":true
-               }
+               },
+               {
+                   "firstName":"Jorge",
+                   "userImage":"https://playfoursquare.s3.amazonaws.com/userpix/4a5e36cdcc36b.jpg",
+                   "highPriority":true
+               },
+               {
+                   "firstName":"Ben",
+                   "userImage":"https://playfoursquare.s3.amazonaws.com/userpix/YPIJJHORR20P30HD.png",
+                   "highPriority":true
+               },
+               {
+                   "firstName":"Echo",
+                   "userImage":"https://playfoursquare.s3.amazonaws.com/userpix/ABX4VUNHL3212GAN.jpg",
+                   "highPriority":true
+               },
+               {
+                   "firstName":"Joe",
+                   "userImage":"https://playfoursquare.s3.amazonaws.com/userpix/BU0IJQDPMZ2JL3OQ.jpg",
+                   "highPriority":true
+               }              
            ];
 
 
