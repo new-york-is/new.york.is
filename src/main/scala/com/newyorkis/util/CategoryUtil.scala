@@ -1,6 +1,6 @@
 package com.newyorkis.util
 
-import com.newyorkis.foursquare.CheckinDetail
+import com.newyorkis.service.CheckinDetail
 
 object CategoryUtil {
   def categoriesForCheckin(checkin: CheckinDetail): List[String] = {
