@@ -10,19 +10,6 @@
         var event = new Event({name:text, highPriority:highPriority});
         window.events.add(event);
     };
-
-    $.getJSON(getUrlForSearchTerm("\"new york is\""))
-    .success(function(obj){
-        var texts = _.pluck(obj.results,"text");    
-        var interval = setInterval(function(){
-                if(texts.length > 0){
-                    addTextEvent(texts.pop());
-                }
-                else{
-                    clearInterval(interval);
-                }
-            }, 10000);
-    });
     
     var alreadyDisplayedTweets = {};
     setInterval(function(){
@@ -36,7 +23,7 @@
                     }
                 });
         });
-    },1500);
+    },10000);
 })(window.jQuery,window);
 
 
