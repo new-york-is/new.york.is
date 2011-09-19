@@ -10,10 +10,7 @@
           userImage:data.response[0].photo
         });
         window.events.add(event);
-      };
-    };
-  },1000);
+      }
+    }
+  )},1000);
 })(window.jQuery,window);
-
-
-
