@@ -45,7 +45,15 @@
     <script type="text/template" id="category-event-view">
         <div class="by-category">
             <div class="lower-section">
-                <div class="category"><%= category %></div><div class="checkins"><img src="img/marsbot.png"><%= checkins %></div>
+                <div class="category"><%= category %></div>
+                <div class="checkins">
+                    <img src="img/marsbot.png">
+                    <div class="checkin-container">
+                        <div class="number"><%= checkins %> </div>
+                        <div class="text">checkins</div>
+                    </div>
+                </div>
+
                 
             </div>
         </div>

@@ -77,9 +77,12 @@ ul{padding:0px;margin:0px;width:10000px;}
 .venue-push-event-view img{vertical-align:middle;margin-left:10px;}
 .venue-push-event-view div{float:left;}
 .by-category,.lower-section{overflow:auto;}
-.by-category img{vertical-align:top;height:80px;margin:0px 10px 0px 0px;}
+.by-category img{vertical-align:middle;height:80px;margin:0px 10px 0px 0px;float:left;}
 .by-category .category{float:left;font-size:100px;}
 .by-category .checkins{float:left;font-size:70px;margin-left:20px;text-align:center;padding:5px 10px;background:white;-webkit-border-radius:5px;-moz-border-radius:5px;font-weight:bold;color:#d1d4d3;margin-top:10px;}
+.by-category .checkins div.text{font-size:20px;}
+.by-category .checkins div.number{height:70px;}
+.by-category .checkins div.checkin-container{text-align:center;float:left;line-height:normal;}
 
 .foursquare-checkin{position: absolute; bottom: 0; right: 0px;z-index:3; font-size:25px; opacity: .7;-ms-filter:"progid:DXImageTransform.Microsoft.Alpha(Opacity=70)"; color:#FFFFFF; background:#FFCB00; padding: 0 5px 0 5px; -webkit-border-radius:5px;-moz-border-radius:5px;}
 .foursquare-checkin a{color:#ff7900;text-decoration:none;}
