@@ -32,14 +32,14 @@ class PushCheckinService(db: Db) extends RestApiService {
       checkin <- db.fetchOne(PushCheckin.orderDesc(_._id))
     } yield {
       val fields = {
-          List(
+          JObject(List(
             JField("id", JString(checkin.id.toString())),
             JField("firstName", JString(checkin.firstName.toString())),
             JField("userId", JString(checkin.userId.toString())),
             JField("photo", JString(checkin.photo.toString())),
-            JField("venuename", JString(checkin.venuename.toString())))
+            JField("venuename", JString(checkin.venuename.toString()))))
       }
-      new RestApiResponse(JObject(List(JField("response", JArray(fields)))))
+      new RestApiResponse(JObject(List(JField("response", JArray(List(fields))))))
     }
   }
 
